@@ -9,9 +9,21 @@ dependencyManagement {
 }
 
 ext['tomcat.version'] = '7.0.59'
+ext['jetty.version'] = '9.2.17.v20160517'
 
 dependencies {
-    compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.cloud:spring-cloud-starter-eureka-server"
-    compile group:'org.apache.tomcat', name:'tomcat-juli', version:property('tomcat.version')
+//    compile "org.springframework.boot:spring-boot-starter-web"
+//    compile group:'org.apache.tomcat', name:'tomcat-juli', version:property('tomcat.version')
+
+    compile ('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
+    compile ('org.springframework.boot:spring-boot-starter-jetty')
+
+    modules {
+        module("javax.servlet:servlet-api") {
+            replacedBy("javax.servlet:javax.servlet-api")
+        }
+    }
 }
