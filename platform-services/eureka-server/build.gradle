@@ -4,11 +4,14 @@ apply plugin: "io.spring.dependency-management"
 dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudDependenciesVersion"
+        mavenBom "io.pivotal.spring.cloud:spring-cloud-services-dependencies:$springCloudServicesVersion"
     }
 }
+
+ext['tomcat.version'] = '7.0.59'
 
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.cloud:spring-cloud-starter-eureka-server"
-
+    compile group:'org.apache.tomcat', name:'tomcat-juli', version:property('tomcat.version')
 }
