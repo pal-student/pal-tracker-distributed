@@ -17,6 +17,7 @@ include "components:test-support"
 
 include "platform-services:eureka-server"
 include "platform-services:oauth-server"
+include "platform-services:zipkin-server"
 
 include "databases:allocations-database"
 include "databases:backlog-database"
